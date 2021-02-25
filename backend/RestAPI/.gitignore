@@ -1,0 +1,10 @@
+bin
+obj
+*.suo
+packages
+uploads
+Logs
+*.userprefs.user
+*.user
+/.vs/config
+/.vs
