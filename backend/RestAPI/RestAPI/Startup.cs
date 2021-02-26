@@ -6,10 +6,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using RestAPI.Interface;
+using RestAPI.Model;
+using RestAPI.UOW;
 
 namespace RestAPI
 {
@@ -27,6 +32,11 @@ namespace RestAPI
         {
             services.AddCors();
             services.AddControllers();
+            services.AddDbContextPool<dbContext>(opt => opt
+                .UseMySql(Configuration.GetConnectionString("DefaultConnection"), mySqlOptions => mySqlOptions
+                    .ServerVersion(new Version(8, 0, 18), ServerType.MySql)
+                ));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
