@@ -20,7 +20,7 @@ namespace RestAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Customers
+        // GET: api/Users
         [Route("[action]")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
@@ -28,25 +28,25 @@ namespace RestAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Customers/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetCustomer(int id)
+        // GET: api/Users/5
+        [HttpGet("[action]/{id}")]
+        public async Task<ActionResult<Users>> GetUser(int id)
         {
-            var customer = await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (customer == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return customer;
+            return user;
         }
 
-        // PUT: api/Customers/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomer(int id, Users users)
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> PutUser(int id, Users users)
         {
             if (id != users.Id)
             {
@@ -61,7 +61,7 @@ namespace RestAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -74,35 +74,35 @@ namespace RestAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Customers
+        // POST: api/Users
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Users>> PostCustomer(Users customer)
+        [HttpPost("[action]")]
+        public async Task<ActionResult<Users>> PostUser(Users user)
         {
-            _context.Users.Add(customer);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
+            return CreatedAtAction("GetUsers", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Customers/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Users>> DeleteCustomer(int id)
+        // DELETE: api/Users/5
+        [HttpDelete("[action]/{id}")]
+        public async Task<ActionResult<Users>> DeleteUser(int id)
         {
-            var customer = await _context.Users.FindAsync(id);
-            if (customer == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(customer);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return customer;
+            return user;
         }
 
-        private bool CustomerExists(int id)
+        private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
         }
