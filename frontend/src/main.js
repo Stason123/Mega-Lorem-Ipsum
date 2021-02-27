@@ -46,7 +46,7 @@ function sendRequest(method, url, body = null) {
 }
 
 
-
+// Get data and display
 sendRequest('GET', restApiUrl+'users/getusers')
   .then(data => {
     data.forEach(element => {
@@ -58,6 +58,15 @@ sendRequest('GET', restApiUrl+'users/getusers')
           var cell = row.insertCell(i);
           if (key === 'dateOfBirth') {            
             cell.innerHTML = `<input type="date" value="${value}" />`;
+          } else if (key === 'gender') {
+            const selectedMale = value === 'Male' ? 'selected' : '';
+            const selectedFemale = value === 'Female' ? 'selected' : '';
+            cell.innerHTML = `
+              <select>
+                <option value="Male" ${selectedMale}>Male</option>
+                <option value="Female" ${selectedFemale}>Female</option>
+              </select>
+            `;
           } else {
             cell.innerHTML = `<input type="text" value="${value}" />`;
           }

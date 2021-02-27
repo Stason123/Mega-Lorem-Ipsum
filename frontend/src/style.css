@@ -37,13 +37,15 @@ button, select {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  position: static;
+  margin-left: 30px;
+  margin-right: 10px;
+  width: 1000px;
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 8px;
 }
 
 tr:nth-child(even) {
