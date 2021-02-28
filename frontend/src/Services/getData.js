@@ -30,9 +30,9 @@ sendRequest('GET', restApiUrl+'users/getusers')
           i++;
         }
         var cell = row.insertCell(i);
-        cell.innerHTML = `<button onclick="saveData(${newUser.id})" class="saveData">Save</button>`;
+        cell.innerHTML = `<button onclick="openModal(${newUser.id}, 'PUT')" class="btn btn-modal blue">Save</button>`;
         var cell2 = row.insertCell(i+1);
-        cell2.innerHTML = `<button onclick="deleteData(${newUser.id})" class="deleteData">Delete</button>`;
+        cell2.innerHTML = `<button onclick="openModal(${newUser.id}, 'DELETE')" class="btn btn-modal red">Delete</button>`;
     });
   })
   .catch(err => console.log(err));

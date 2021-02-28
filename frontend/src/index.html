@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>A JavaScript project</h1>
-  <button onclick="createNew()">Create New Row</button>
+  <button onclick="createNew()" class="btn btn-modal green">Create New Row</button>
 
   <div >
     <table id="tableContainer">
@@ -18,23 +18,33 @@
         <th>Email</th>
         <th>Date of birth</th>
         <th>Gender</th>
-        <th>Save</th>
-        <th>Delete</th>
+        <th></th>
+        <th></th>
       </tr>
     </table>
   </div>
-  <script type="text/javascript" defer src="./Models/user.js"></script>
+
+<!-- Modal -->
+<div class="modal" id="fin-fout-modal">
+  <div class="m-container">
+      <h4 class="m-title" id="titleModal"></h4>
+      <p class="m-close"  onclick="closeModal()"></p>
+      <div class="m-content">
+          <p id="confirmMessage"></p>
+          <div class="m-footer" id="modalButtons">
+              
+          </div>
+      </div>
+  </div>
+</div>
+
+
+  <script type="text/javascript" src="./Models/user.js"></script>
   <script type="text/javascript" src="./Connection/request.js"></script>
   <script type="text/javascript" src="./Services/delete.js"></script>
   <script type="text/javascript" src="./Services/save.js"></script>
-  <script type="text/javascript" defer src="./Services/createNew.js"></script>
+  <script type="text/javascript" src="./Services/createNew.js"></script>
+  <script type="text/javascript" src="./Services/modal.js"></script>
   <script type="text/javascript" defer src="./Services/getData.js"></script>
-
-
-  <!-- <script>
-    function saveData() {
-    alert("Hello world!");
-  }
-</script> -->
 </body>
 </html>
