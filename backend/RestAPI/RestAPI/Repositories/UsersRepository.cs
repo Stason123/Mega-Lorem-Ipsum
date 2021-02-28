@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using RestAPI.Interface;
 using RestAPI.Model;
 
@@ -6,16 +7,19 @@ namespace RestAPI.Repositories
 {
     public class UsersRepository : BaseRepository<Users>, IUsersRepository
     {
-        protected readonly DbContext Context;
+        protected readonly dbContext _context;
 
-        public UsersRepository(DbContext context) : base(context)
+        public UsersRepository(dbContext context) : base(context)
         {
-            this.Context = context;
+            _context = context;
         }
 
-        private dbContext dbContext
+        public int GetLastUserId()
         {
-            get { return Context as dbContext; }
+            var orderByDescendingResult = from s in _context.Users
+                orderby s.Id descending
+                select s.Id;
+            return orderByDescendingResult.FirstOrDefault();
         }
 
     }

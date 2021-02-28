@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RestAPI.Interface;
 using RestAPI.Model;
 
 namespace RestAPI.Controllers
@@ -14,13 +15,14 @@ namespace RestAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly dbContext _context;
+        private readonly IUnitOfWork _uow;
 
-        public UsersController(dbContext context)
+        public UsersController(dbContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
+            _uow = unitOfWork;
         }
 
-        // GET: api/Users
         [Route("[action]")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
@@ -28,7 +30,7 @@ namespace RestAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Users/5
+
         [HttpGet("[action]/{id}")]
         public async Task<ActionResult<Users>> GetUser(int id)
         {
@@ -42,9 +44,7 @@ namespace RestAPI.Controllers
             return user;
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+
         [HttpPut("[action]/{id}")]
         public async Task<IActionResult> PutUser(int id, Users users)
         {
@@ -53,6 +53,7 @@ namespace RestAPI.Controllers
                 return BadRequest();
             }
 
+            users.DateOfBirth = users.DateOfBirth.Value.AddDays(1);
             _context.Entry(users).State = EntityState.Modified;
 
             try
@@ -74,19 +75,27 @@ namespace RestAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost("[action]")]
         public async Task<ActionResult<Users>> PostUser(Users user)
         {
-            _context.Users.Add(user);
+            var lastUserId = _uow.Users.GetLastUserId();
+            var userId = lastUserId > 0 ? lastUserId + 1 : 0 + 1;
+            user.DateOfBirth = user.DateOfBirth.Value.AddDays(1);
+            var model = new Users
+            {
+                Id = userId,
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                Gender = user.Gender
+            };
+            _context.Users.Add(model);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = user.Id }, user);
+            return CreatedAtAction("GetUsers", new { id = userId }, user);
         }
 
-        // DELETE: api/Users/5
         [HttpDelete("[action]/{id}")]
         public async Task<ActionResult<Users>> DeleteUser(int id)
         {

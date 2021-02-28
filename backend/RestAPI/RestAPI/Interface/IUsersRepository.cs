@@ -9,6 +9,6 @@ namespace RestAPI.Interface
 {
     public interface IUsersRepository : IBaseRepository<Users>
     {
-       
+        int GetLastUserId();
     }
 }
