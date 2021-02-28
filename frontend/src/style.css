@@ -40,13 +40,10 @@ table {
   position: static;
   margin-left: 30px;
   margin-right: 10px;
+  margin-top: 20px;
   width: 1000px;
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-}
 
 tr:nth-child(even) {
   background-color: #dddddd;
@@ -217,4 +214,14 @@ tr:nth-child(even) {
 }
 .btn.dark:hover {
   background-color: #363636;
+}
+
+input {
+  padding: 6px;
+  border-radius: 8px;
+}
+
+select {
+  padding: 6px;
+  border-radius: 8px;
 }

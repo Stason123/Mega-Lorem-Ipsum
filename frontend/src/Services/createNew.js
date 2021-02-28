@@ -53,13 +53,12 @@ function createAndsaveData() {
   const gender = document.getElementById(`gender-newUserId`);
   console.log('gender', gender.value);
   const date = new Date(dateOfBirth.value);
-  console.log(date.toISOString());
   const newUser = new User({
       id: 0,
       name: name.value,
       surname: email.value,
       email: email.value,
-      dateOfBirth: date.toISOString(),
+      dateOfBirth: date,
       gender: gender.value
   });
 
