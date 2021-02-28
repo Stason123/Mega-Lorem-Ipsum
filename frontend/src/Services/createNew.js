@@ -32,7 +32,43 @@ function createNew() {
           i++;
         }
         var cell = row.insertCell(i);
-        cell.innerHTML = `<button onclick="createAndsaveData(${id})" class="saveData">Create</button>`;
+        cell.innerHTML = `<button onclick="createAndsaveData()" class="saveData">Create</button>`;
         var cell2 = row.insertCell(i+1);
         cell2.innerHTML = `<button onclick="cencel(${newUser.id})" class="cencel">Cencel</button>`;
+}
+
+function createAndsaveData() {
+  const name = document.getElementById(`name-newUserId`);
+  console.log('name', name.value);
+
+  const surname = document.getElementById(`surname-newUserId`);
+  console.log('surname', surname.value);
+
+  const email = document.getElementById(`email-newUserId`);
+  console.log('email', email.value);
+
+  const dateOfBirth = document.getElementById(`dateOfBirth-newUserId`);
+  console.log('dateOfBirth', dateOfBirth.value);
+
+  const gender = document.getElementById(`gender-newUserId`);
+  console.log('gender', gender.value);
+  const date = new Date(dateOfBirth.value);
+  console.log(date.toISOString());
+  const newUser = new User({
+      id: 0,
+      name: name.value,
+      surname: email.value,
+      email: email.value,
+      dateOfBirth: date.toISOString(),
+      gender: gender.value
+  });
+
+  console.log('newUser', newUser);
+  sendRequest('POST', restApiUrl+'users/PostUser', newUser)
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+}
+
+function cencel() {
+  location.reload();
 }

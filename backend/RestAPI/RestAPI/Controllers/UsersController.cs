@@ -23,7 +23,6 @@ namespace RestAPI.Controllers
             _uow = unitOfWork;
         }
 
-        // GET: api/Users
         [Route("[action]")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
@@ -31,7 +30,7 @@ namespace RestAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Users/5
+
         [HttpGet("[action]/{id}")]
         public async Task<ActionResult<Users>> GetUser(int id)
         {
@@ -45,9 +44,7 @@ namespace RestAPI.Controllers
             return user;
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+
         [HttpPut("[action]/{id}")]
         public async Task<IActionResult> PutUser(int id, Users users)
         {
@@ -55,8 +52,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest();
             }
-            //var dateTime = users.DateOfBirth?.ToString("yyyy-MM-dd");
-            //users.DateOfBirth = Convert.ToDateTime(dateTime);
+
             users.DateOfBirth = users.DateOfBirth.Value.AddDays(1);
             _context.Entry(users).State = EntityState.Modified;
 
@@ -79,15 +75,12 @@ namespace RestAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost("[action]")]
         public async Task<ActionResult<Users>> PostUser(Users user)
         {
             var lastUserId = _uow.Users.GetLastUserId();
             var userId = lastUserId > 0 ? lastUserId + 1 : 0 + 1;
-
+            user.DateOfBirth = user.DateOfBirth.Value.AddDays(1);
             var model = new Users
             {
                 Id = userId,
@@ -103,7 +96,6 @@ namespace RestAPI.Controllers
             return CreatedAtAction("GetUsers", new { id = userId }, user);
         }
 
-        // DELETE: api/Users/5
         [HttpDelete("[action]/{id}")]
         public async Task<ActionResult<Users>> DeleteUser(int id)
         {
