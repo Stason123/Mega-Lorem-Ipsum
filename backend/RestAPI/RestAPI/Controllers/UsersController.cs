@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RestAPI.Interface;
 using RestAPI.Model;
 
 namespace RestAPI.Controllers
@@ -14,10 +15,12 @@ namespace RestAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly dbContext _context;
+        private readonly IUnitOfWork _uow;
 
-        public UsersController(dbContext context)
+        public UsersController(dbContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
+            _uow = unitOfWork;
         }
 
         // GET: api/Users
@@ -52,7 +55,9 @@ namespace RestAPI.Controllers
             {
                 return BadRequest();
             }
-
+            //var dateTime = users.DateOfBirth?.ToString("yyyy-MM-dd");
+            //users.DateOfBirth = Convert.ToDateTime(dateTime);
+            users.DateOfBirth = users.DateOfBirth.Value.AddDays(1);
             _context.Entry(users).State = EntityState.Modified;
 
             try
@@ -80,10 +85,22 @@ namespace RestAPI.Controllers
         [HttpPost("[action]")]
         public async Task<ActionResult<Users>> PostUser(Users user)
         {
-            _context.Users.Add(user);
+            var lastUserId = _uow.Users.GetLastUserId();
+            var userId = lastUserId > 0 ? lastUserId + 1 : 0 + 1;
+
+            var model = new Users
+            {
+                Id = userId,
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                Gender = user.Gender
+            };
+            _context.Users.Add(model);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = user.Id }, user);
+            return CreatedAtAction("GetUsers", new { id = userId }, user);
         }
 
         // DELETE: api/Users/5

@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>A JavaScript project</h1>
-  <div id="app"></div>
+  <button onclick="createNew()">Create New Row</button>
 
   <div >
     <table id="tableContainer">
@@ -21,27 +21,15 @@
         <th>Save</th>
         <th>Delete</th>
       </tr>
-      <!-- <tr>
-        <td>Test1</td>
-        <td>Test2</td>
-        <td>Test3</td>
-        <td>Test4</td>
-        <td>Test5</td>
-        <td>Test6</td>
-      </tr>
-      <tr>
-        <td>Test1</td>
-        <td>Test2</td>
-        <td>Test3</td>
-        <td>Test4</td>
-        <td>Test5</td>
-        <td>Test6</td>
-      </tr> -->
     </table>
   </div>
   <script type="text/javascript" defer src="./Models/user.js"></script>
-  <script type="text/javascript" defer src="main.js"></script>
-  <script type="text/javascript" src="save.js"></script>
+  <script type="text/javascript" src="./Connection/request.js"></script>
+  <script type="text/javascript" src="./Services/delete.js"></script>
+  <script type="text/javascript" src="./Services/save.js"></script>
+  <script type="text/javascript" defer src="./Services/createNew.js"></script>
+  <script type="text/javascript" defer src="./Services/getData.js"></script>
+
 
   <!-- <script>
     function saveData() {
