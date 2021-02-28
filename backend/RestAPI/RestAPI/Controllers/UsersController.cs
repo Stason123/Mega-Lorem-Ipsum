@@ -80,7 +80,10 @@ namespace RestAPI.Controllers
         {
             var lastUserId = _uow.Users.GetLastUserId();
             var userId = lastUserId > 0 ? lastUserId + 1 : 0 + 1;
-            user.DateOfBirth = user.DateOfBirth.Value.AddDays(1);
+            if (user.DateOfBirth != null)
+            {
+                user.DateOfBirth = user.DateOfBirth.Value.AddDays(1);
+            }
             var model = new Users
             {
                 Id = userId,
