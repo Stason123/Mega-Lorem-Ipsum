@@ -99,6 +99,33 @@ namespace RestAPI.Controllers
             return CreatedAtAction("GetUsers", new { id = userId }, user);
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> PostUserTwoHundy([FromBody] Users[] users)
+        {
+            var lastUserId = _uow.Users.GetLastUserId();
+            var userId = lastUserId > 0 ? lastUserId + 1 : 0 + 1;
+            foreach (var user in users)
+            {
+                if (user.DateOfBirth != null)
+                {
+                    user.DateOfBirth = user.DateOfBirth.Value.AddDays(1);
+                }
+                var model = new Users
+                {
+                    Id = userId,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    Email = user.Email,
+                    DateOfBirth = user.DateOfBirth,
+                    Gender = user.Gender
+                };
+                _context.Users.Add(model);
+                await _context.SaveChangesAsync();
+                userId = userId + 1;
+            }
+            return NoContent();
+        }
+
         [HttpDelete("[action]/{id}")]
         public async Task<ActionResult<Users>> DeleteUser(int id)
         {

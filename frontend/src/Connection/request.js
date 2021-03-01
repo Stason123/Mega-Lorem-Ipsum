@@ -1,6 +1,6 @@
 const restApiUrl = 'https://localhost:44394/';
 
-function sendRequest(method, url, body = null) {
+async function sendRequest(method, url, body = null) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url)
@@ -15,5 +15,5 @@ function sendRequest(method, url, body = null) {
         resolve(xhr.response)
       }
       xhr.send(JSON.stringify(body))
-    })
+    });
 }
