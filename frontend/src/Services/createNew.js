@@ -19,11 +19,7 @@ function createNew() {
     var cell = row.insertCell(i);
     if (key === 'dateOfBirth') {            
       cell.innerHTML = `<input id="${key}-${id}" type="date"  />`;
-    } 
-    // else if (key === 'id') {
-    //   cell.innerHTML = `<a class="${key}"></a>`;
-    // }
-     else if (key === 'gender') {
+    } else if (key === 'gender') {
       cell.innerHTML = `
         <select id="${key}-${id}">
           <option  selected>Select</option>

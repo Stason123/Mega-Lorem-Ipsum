@@ -1,5 +1,4 @@
-// export default
- class User {
+class User {
     constructor(options) {
         this.id = options.id;
         this.name = options.name;
