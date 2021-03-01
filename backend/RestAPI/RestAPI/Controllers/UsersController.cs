@@ -100,12 +100,12 @@ namespace RestAPI.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult<Users>> PostUserTwoHundy(Users[] users)
+        public async Task<IActionResult> PostUserTwoHundy([FromBody] Users[] users)
         {
+            var lastUserId = _uow.Users.GetLastUserId();
+            var userId = lastUserId > 0 ? lastUserId + 1 : 0 + 1;
             foreach (var user in users)
             {
-                var lastUserId = _uow.Users.GetLastUserId();
-                var userId = lastUserId > 0 ? lastUserId + 1 : 0 + 1;
                 if (user.DateOfBirth != null)
                 {
                     user.DateOfBirth = user.DateOfBirth.Value.AddDays(1);
@@ -121,7 +121,7 @@ namespace RestAPI.Controllers
                 };
                 _context.Users.Add(model);
                 await _context.SaveChangesAsync();
-
+                userId = userId + 1;
             }
             return NoContent();
         }

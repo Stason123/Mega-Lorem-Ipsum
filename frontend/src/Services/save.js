@@ -9,7 +9,7 @@ function saveData(id) {
     const newUser = new User({
         id: id,
         name: name.value,
-        surname: email.value,
+        surname: surname.value,
         email: email.value,
         dateOfBirth: date.toISOString(),
         gender: gender.value
