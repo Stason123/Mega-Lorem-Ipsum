@@ -24,7 +24,7 @@ function getGenderCharacter() {
     return arr[Math.round(Math.random())];
 }
 
-function getDob() {
+function getDOB() {
     const randomAge = Math.floor(Math.random() * 100) + 1;
     const randomMonth = Math.floor(Math.random() * 12) + 1;
     const randomDay = Math.floor(Math.random() * 28) + 1;
@@ -39,7 +39,7 @@ async function randomUser() {
         getJson().then(() => {
             var randomName = jsonName[Math.floor(Math.random()*jsonName.length)];
             var randomSurname = jsonSurname[Math.floor(Math.random()*jsonSurname.length)];
-            var dob = getDob();
+            var dob = getDOB();
             var gender = getGenderCharacter();
             var user = new User({
                 id: 0,

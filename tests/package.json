@@ -1,0 +1,17 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "Jest Unit Test",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^26.6.3"
+  },
+  "devDependencies": {
+    "babel-plugin-rewire": "^1.2.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Stanislavs Jakovenko",
+  "license": "ISC"
+}
