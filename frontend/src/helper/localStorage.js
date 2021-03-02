@@ -1,5 +1,4 @@
 function saveInLocalStorage(data) {
-    console.log('saveInLocalStorage', data);
     localStorage.setItem("lastNum", data);
 }
   

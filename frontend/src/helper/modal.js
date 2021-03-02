@@ -28,10 +28,23 @@ function openModal(id, type) {
             <a class="btn btn-modal blue" onclick="deleteData(${id})" >Confirm</a>
             <a class="btn btn-modal blue" onclick="closeModal()">Cencel</a>
         `
-    }    
+    } else if (type === "CREATE") {
+        h.innerText = "Create 200 New Users";
+        p.innerText = 'Confirm creating?';
+        b.innerHTML = `
+            <a class="btn btn-modal blue" onclick="createNewTwoHundry()" >Confirm</a>
+            <a class="btn btn-modal blue" onclick="closeModal()">Cencel</a>
+        `
+    }   
     modal.classList.add('active');
 }
 
 function closeModal() {
     modal.classList.remove("active");
-}  
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        modal.classList.remove("active");
+    }
+})
