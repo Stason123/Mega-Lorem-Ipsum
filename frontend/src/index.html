@@ -13,9 +13,9 @@
 <body>
     <h1 class="centr">A Vanilla JavaScript project</h1>
     <div class="centr">
-        <a onclick="createNew()" class="btn btn-modal green">Create New Row</a>
+        <button onclick="createNew()" class="btn btn-modal green">Create New Row</button>
         <!-- To create 200 Random Users -->
-        <a onclick="openModal(0, 'CREATE')" class="btn btn-modal green">Create Random 200 Users</a>
+        <button onclick="openModal(0, 'CREATE')" class="btn btn-modal green">Create Random 200 Users</button>
     </div>
 
     <table class="table">
@@ -32,21 +32,8 @@
         <tbody id="tableBody">
 
         </tbody>
-        <!-- <tr>
-      <th>Nr.</th>
-      <th>Name</th>
-      <th>Surname</th>
-      <th>Email</th>
-      <th>Date of birth</th>
-      <th>Gender</th>
-      <th></th>
-      <th></th>
-    </tr> -->
     </table>
 
-    <!-- <div class="container">
-    
-  </div> -->
 
     <!-- Modal -->
     <div class="modal" id="fin-fout-modal">
@@ -61,7 +48,6 @@
             </div>
         </div>
     </div>
-
 
     <script type="text/javascript" src="./Models/user.js"></script>
     <script type="text/javascript" src="./Connection/request.js"></script>

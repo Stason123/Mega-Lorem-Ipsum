@@ -8,7 +8,7 @@
 .table td,
 .table th {
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid rgb(185, 185, 185);
     text-align: center;
     font-size: 16px;
 }
@@ -24,6 +24,10 @@ table td {
 
 .table td:hover {
     background-color: #ccc;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #949494;
 }
 
 table tbody tr:nth-child(even) {
@@ -59,6 +63,38 @@ table tbody tr:nth-child(even) {
         left: 0;
         width: 50%;
         padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+@media(max-width: 400px) {
+    .table thead {
+        display: none;
+    }
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+    .table tr {
+        margin-bottom: 15px;
+    }
+    .table td {
+        text-align: right;
+        padding-left: 30%;
+        text-align: right;
+        position: relative;
+    }
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 5px;
         font-size: 15px;
         font-weight: bold;
         text-align: left;

@@ -31,3 +31,9 @@ select {
     padding: 6px;
     border-radius: 8px;
 }
+
+@media(max-width: 400px) {
+    .centr button {
+        display: block;
+    }
+}
