@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+.centr {
+    text-align: center;
+}
+
+input {
+    padding: 6px;
+    border-radius: 8px;
+}
+
+select {
+    padding: 6px;
+    border-radius: 8px;
+}

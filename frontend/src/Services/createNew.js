@@ -1,5 +1,5 @@
 function createNew() {
-  const table = document.getElementById("tableContainer");
+  const table = document.getElementById("tableBody");
   const lastRow = table.rows.length;
   const newUser = new User({
       id: 0,
@@ -65,7 +65,6 @@ async function createNewTwoHundry() {
     var user = await randomUser();
     usersArr.push(user)
   }
-  console.log('usersArr', usersArr)
   sendRequest('POST', restApiUrl+'users/PostUserTwoHundy', usersArr)
     .then(data => console.log(data))
     .catch(err => console.log(err));
