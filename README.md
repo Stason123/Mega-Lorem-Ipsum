@@ -1,5 +1,5 @@
 # Mega-Lorem-Ipsum
-VanillaJS + .net core + MySql in Docker
+VanillaJS + .net core + MySql in Docker + Jest Unit test
  
 1. In Docker run the MySql database server 
 2. DatabaseTablesShemeBackup.txt have a script to create a table in the MySql database server
