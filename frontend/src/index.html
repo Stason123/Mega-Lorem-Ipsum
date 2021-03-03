@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>A Vanilla JavaScript project</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Vanilla JavaScript project</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/table.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="./css/button.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-  <h1>A Vanilla JavaScript project</h1>
-  <button onclick="createNew()" class="btn btn-modal green">Create New Row</button>
-  <!-- To create 200 Random Users -->
-  <button onclick="openModal(0, 'CREATE')" class="btn btn-modal green">Create Random 200 Users</button>
+    <h1 class="centr">A Vanilla JavaScript project</h1>
+    <div class="centr">
+        <button onclick="createNew()" class="btn btn-modal green">Create New Row</button>
+        <!-- To create 200 Random Users -->
+        <button onclick="openModal(0, 'CREATE')" class="btn btn-modal green">Create Random 200 Users</button>
+    </div>
 
-  <div >
-    <table id="tableContainer">
-      <tr>
-        <th>Nr.</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Email</th>
-        <th>Date of birth</th>
-        <th>Gender</th>
-        <th></th>
-        <th></th>
-      </tr>
+    <table class="table">
+        <thead>
+            <th>Nr.</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Date of birth</th>
+            <th>Gender</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody id="tableBody">
+
+        </tbody>
     </table>
-  </div>
 
-  <!-- Modal -->
-  <div class="modal" id="fin-fout-modal">
-    <div class="m-container">
-        <h4 class="m-title" id="titleModal"></h4>
-        <p class="m-close"  onclick="closeModal()"></p>
-        <div class="m-content">
-            <p id="confirmMessage"></p>
-            <div class="m-footer" id="modalButtons">
-                
+
+    <!-- Modal -->
+    <div class="modal" id="fin-fout-modal">
+        <div class="m-container">
+            <h4 class="m-title" id="titleModal"></h4>
+            <p class="m-close" onclick="closeModal()"></p>
+            <div class="m-content">
+                <p id="confirmMessage"></p>
+                <div class="m-footer" id="modalButtons">
+
+                </div>
             </div>
         </div>
     </div>
-  </div>
 
+    <script type="text/javascript" src="./Models/user.js"></script>
+    <script type="text/javascript" src="./Connection/request.js"></script>
+    <script type="text/javascript" src="./Services/delete.js"></script>
+    <script type="text/javascript" src="./Services/save.js"></script>
+    <script type="text/javascript" src="./Services/createNew.js"></script>
+    <script type="text/javascript" src="./helper/modal.js"></script>
+    <script type="text/javascript" src="./helper/randomUser.js"></script>
+    <script type="text/javascript" src="./helper/localStorage.js"></script>
+    <script type="text/javascript" src="./Services/getData.js"></script>
+    <script type="text/javascript" src="./Models/dataLabel.js"></script>
 
-  <script type="text/javascript" src="./Models/user.js"></script>
-  <script type="text/javascript" src="./Connection/request.js"></script>
-  <script type="text/javascript" src="./Services/delete.js"></script>
-  <script type="text/javascript" src="./Services/save.js"></script>
-  <script type="text/javascript" src="./Services/createNew.js"></script>
-  <script type="text/javascript" src="./helper/modal.js"></script>
-  <script type="text/javascript" src="./helper/randomUser.js"></script>
-  <script type="text/javascript" src="./helper/localStorage.js"></script>
-  <script type="text/javascript" defer src="./Services/getData.js"></script>
 </body>
+
 </html>
