@@ -2,7 +2,7 @@ var saveId;
 var model;
 const myUrl = new URL('https://www.lorem-ipsum.com/');
 
-async function openModal(id, type) {
+function openModal(id, type) {
     saveId = id;
     modal = document.getElementById("fin-fout-modal");
     const p = document.getElementById("confirmMessage");
