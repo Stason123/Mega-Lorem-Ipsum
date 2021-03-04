@@ -25,11 +25,11 @@ sendRequest('GET', restApiUrl + 'users/getusers')
                     const selectedMale = value === 'Male' ? 'selected' : '';
                     const selectedFemale = value === 'Female' ? 'selected' : '';
                     cell.innerHTML = `
-            <select id="${key}-${newUser.id}">
-              <option  value="Male" ${selectedMale}>Male</option>
-              <option value="Female" ${selectedFemale}>Female</option>
-            </select>
-          `;
+                        <select id="${key}-${newUser.id}">
+                        <option  value="Male" ${selectedMale}>Male</option>
+                        <option value="Female" ${selectedFemale}>Female</option>
+                        </select>
+                    `;
                 } else if (key !== 'id') {
                     var cell = row.insertCell(i);
                     cell.setAttribute("data-label", datalabel[key]);
@@ -45,25 +45,24 @@ sendRequest('GET', restApiUrl + 'users/getusers')
             cell2.innerHTML = `<button onclick="openModal(${newUser.id}, 'DELETE')" class="btn btn-modal red">Delete</button>`;
         });
         saveInLocalStorage(j);
-        pageReady();
+
     })
     .catch(err => console.log(err));
 
 function getUserBuIdFromUI(id) {
-    const name = document.getElementById(`name-${id}`);
-    const surname = document.getElementById(`surname-${id}`);
-    const email = document.getElementById(`email-${id}`);
-    const dateOfBirth = document.getElementById(`dateOfBirth-${id}`);
-    const gender = document.getElementById(`gender-${id}`);
-    const date = new Date(dateOfBirth.value);
+    const nameUI = document.getElementById(`name-${id}`);
+    const surnameUI = document.getElementById(`surname-${id}`);
+    const emailUI = document.getElementById(`email-${id}`);
+    const dateOfBirthUI = document.getElementById(`dateOfBirth-${id}`);
+    const genderUI = document.getElementById(`gender-${id}`);
 
     const user = new User({
         id: id,
-        name: name.value,
-        surname: surname.value,
-        email: email.value,
-        dateOfBirth: date.toISOString(),
-        gender: gender.value
+        name: nameUI !== null ? nameUI.value : '',
+        surname: surnameUI !== null ? surnameUI.value : '',
+        email: emailUI !== null ? emailUI.value : '',
+        dateOfBirth: new Date(dateOfBirthUI !== null ? dateOfBirthUI.value : ''),
+        gender: genderUI !== null ? genderUI.value : ''
     });
     return user;
 }
