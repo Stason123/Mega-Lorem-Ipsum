@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body onload="pageReady()">
-    <h1 class="centr">A Vanilla JavaScript project</h1>
-    <div class="centr">
+<body>
+    <h1 class="center">A Vanilla JavaScript project</h1>
+    <div class="center">
         <button onclick="createNew()" class="btn btn-modal green">Create New Row</button>
         <!-- To create 200 Random Users -->
         <button onclick="openModal(0, 'CREATE')" class="btn btn-modal green">Create Random 200 Users</button>
@@ -40,7 +40,8 @@
         <div class="m-container">
             <h4 class="m-title" id="titleModal"></h4>
             <p class="m-close" onclick="closeModal()"></p>
-            <div class="m-content">
+            <div class="m-content center">
+                <p id="userData"></p>
                 <p id="confirmMessage"></p>
                 <div class="m-footer" id="modalButtons">
 

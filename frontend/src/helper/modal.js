@@ -1,14 +1,16 @@
-var saveId;
 var model;
 const myUrl = new URL('https://www.lorem-ipsum.com/');
 
 function openModal(id, type) {
-    saveId = id;
+    let userUI;
     modal = document.getElementById("fin-fout-modal");
     const p = document.getElementById("confirmMessage");
+    const pU = document.getElementById("userData");
     const h = document.getElementById("titleModal");
     const b = document.getElementById("modalButtons");
-
+    if (id !== null) {
+        userUI = getUserBuIdFromUI(id);
+    }
     if (type === "PUT") {
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?method=PUT&id=${id}`;
         h.innerText = "Save Changes";
@@ -28,7 +30,7 @@ function openModal(id, type) {
     } else if (type === "DELETE") {
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?method=DELETE&id=${id}`;
         h.innerText = "Delete Row";
-        p.innerText = 'Confirm deleting?';
+        pU.innerText = `Do you want delete user ${userUI.name} ${userUI.surname}?`
         b.innerHTML = `
             <a class="btn btn-modal blue" onclick="deleteData(${id})" >Confirm</a>
             <a class="btn btn-modal blue" onclick="closeModal()">Cencel</a>
@@ -63,7 +65,7 @@ function closeModal() {
     modal.classList.remove("active");
 }
 
-async function pageReady() {
+function pageReady() {
     const method = getUrlParams('method');
     const id = getUrlParams('id');
     if (method !== null) {

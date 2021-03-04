@@ -45,5 +45,25 @@ sendRequest('GET', restApiUrl + 'users/getusers')
             cell2.innerHTML = `<button onclick="openModal(${newUser.id}, 'DELETE')" class="btn btn-modal red">Delete</button>`;
         });
         saveInLocalStorage(j);
+        pageReady();
     })
     .catch(err => console.log(err));
+
+function getUserBuIdFromUI(id) {
+    const name = document.getElementById(`name-${id}`);
+    const surname = document.getElementById(`surname-${id}`);
+    const email = document.getElementById(`email-${id}`);
+    const dateOfBirth = document.getElementById(`dateOfBirth-${id}`);
+    const gender = document.getElementById(`gender-${id}`);
+    const date = new Date(dateOfBirth.value);
+
+    const user = new User({
+        id: id,
+        name: name.value,
+        surname: surname.value,
+        email: email.value,
+        dateOfBirth: date.toISOString(),
+        gender: gender.value
+    });
+    return user;
+}
