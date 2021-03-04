@@ -8,12 +8,14 @@ function openModal(id, type) {
     const pU = document.getElementById("userData");
     const h = document.getElementById("titleModal");
     const b = document.getElementById("modalButtons");
-    if (id !== null) {
+    console.log('id', id)
+    if (id != 0) {
         userUI = getUserBuIdFromUI(id);
     }
     if (type === "PUT") {
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?method=PUT&id=${id}`;
         h.innerText = "Save Changes";
+        pU.innerText = "";
         p.innerText = 'Confirm changes?';
         b.innerHTML = `
             <a class="btn btn-modal blue" onclick="saveData(${id})" >Confirm</a>
@@ -22,6 +24,7 @@ function openModal(id, type) {
     } else if (type === "POST") {
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?method=POST&id=0`;
         h.innerText = "Create New";
+        pU.innerText = "";
         p.innerText = 'Confirm creating new row?';
         b.innerHTML = `
             <a class="btn btn-modal blue" onclick="createAndsaveData()">Confirm</a>
@@ -40,6 +43,7 @@ function openModal(id, type) {
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?method=CREATE&id=0`;
 
         h.innerText = "Create 200 New Users";
+        pU.innerText = "";
         p.innerText = 'Confirm creating?';
         b.innerHTML = `
             <a class="btn btn-modal blue" onclick="createNewTwoHundry()" >Confirm</a>

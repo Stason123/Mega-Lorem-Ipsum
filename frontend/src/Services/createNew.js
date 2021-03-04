@@ -39,7 +39,7 @@ async function createNew() {
         i++;
     }
     var cell = row.insertCell(i);
-    cell.innerHTML = `<button onclick="openModal(${0}, 'POST')" class="btn btn-modal blue">Create</button>`;
+    cell.innerHTML = `<button onclick="openModal(0, 'POST')" class="btn btn-modal blue">Create</button>`;
     var cell2 = row.insertCell(i + 1);
     cell2.innerHTML = `<button onclick="cencel()" class="btn btn-modal red">Cencel</button>`;
 }
