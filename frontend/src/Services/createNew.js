@@ -70,19 +70,25 @@ function getNewUserData() {
 function createAndsaveData() {
     const newUser = getNewUserData();
     sendRequest('POST', restApiUrl + 'users/PostUser', newUser)
-        .then(data => console.log(data))
+        .then(data => {
+            clearUrl();
+            console.log(data)
+        })
         .catch(err => console.log(err));
 }
 
 async function createNewTwoHundry() {
     closeModal();
+    clearUrl();
     var usersArr = [];
     for (let i = 0; i < 200; i++) {
         var user = await randomUser();
         usersArr.push(user)
     }
     sendRequest('POST', restApiUrl + 'users/PostUserTwoHundy', usersArr)
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+        })
         .catch(err => console.log(err));
 }
 
