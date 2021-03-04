@@ -1,6 +1,5 @@
-function createNew() {
+async function createNew() {
     const table = document.getElementById("tableBody");
-    const lastRow = table.rows.length;
     const newUser = new User({
         id: 0,
         name: '',
@@ -45,13 +44,17 @@ function createNew() {
     cell2.innerHTML = `<button onclick="cencel()" class="btn btn-modal red">Cencel</button>`;
 }
 
-function createAndsaveData() {
+function getNewUserData() {
     const name = document.getElementById(`name-newUserId`);
     const surname = document.getElementById(`surname-newUserId`);
     const email = document.getElementById(`email-newUserId`);
     const dateOfBirth = document.getElementById(`dateOfBirth-newUserId`);
     const gender = document.getElementById(`gender-newUserId`);
-    const date = new Date(dateOfBirth.value);
+    console.log(dateOfBirth)
+    let date;
+    if (dateOfBirth !== null) {
+        date = new Date(dateOfBirth.value);
+    }
     const newUser = new User({
         id: 0,
         name: name.value,
@@ -60,7 +63,12 @@ function createAndsaveData() {
         dateOfBirth: date,
         gender: gender.value
     });
+    return newUser;
+}
 
+
+function createAndsaveData() {
+    const newUser = getNewUserData();
     sendRequest('POST', restApiUrl + 'users/PostUser', newUser)
         .then(data => console.log(data))
         .catch(err => console.log(err));
