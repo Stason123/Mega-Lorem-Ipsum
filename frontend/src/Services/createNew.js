@@ -75,6 +75,7 @@ function createAndsaveData() {
 }
 
 async function createNewTwoHundry() {
+    closeModal();
     var usersArr = [];
     for (let i = 0; i < 200; i++) {
         var user = await randomUser();
