@@ -12,9 +12,6 @@ async function sendRequest(method, url, body = null) {
             if (xhr.status >= 400) {
                 reject('err', xhr.response)
             }
-            // if (method !== 'GET') {
-            //     clearUrl();
-            // }
             resolve(xhr.response)
         }
         xhr.send(JSON.stringify(body))

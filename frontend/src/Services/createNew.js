@@ -51,10 +51,7 @@ function getNewUserData() {
     const dateOfBirth = document.getElementById(`dateOfBirth-newUserId`);
     const gender = document.getElementById(`gender-newUserId`);
     console.log(dateOfBirth)
-    let date;
-    if (dateOfBirth !== null) {
-        date = new Date(dateOfBirth.value);
-    }
+    let date = new Date(dateOfBirth.value);
     const newUser = new User({
         id: 0,
         name: name.value,
@@ -67,8 +64,13 @@ function getNewUserData() {
 }
 
 
-function createAndsaveData() {
-    const newUser = getNewUserData();
+function createAndsaveData(getFromLocStor = fasle) {
+    let newUser;
+    if (getFromLocStor) {
+        newUser = getUserDateToLocalStorage('POST');
+    } else {
+        newUser = getNewUserData();
+    }
     sendRequest('POST', restApiUrl + 'users/PostUser', newUser)
         .then(data => {
             clearUrl();

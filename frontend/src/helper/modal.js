@@ -1,33 +1,57 @@
 var model;
 const myUrl = new URL('https://www.lorem-ipsum.com/');
 
-function openModal(id, type) {
+function openModal(id, type, pageLoad = false) {
     let userUI;
     modal = document.getElementById("fin-fout-modal");
     const p = document.getElementById("confirmMessage");
     const pU = document.getElementById("userData");
     const h = document.getElementById("titleModal");
     const b = document.getElementById("modalButtons");
-    console.log('id', id)
     if (id != 0) {
         userUI = getUserBuIdFromUI(id);
     }
     if (type === "PUT") {
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?method=PUT&id=${id}`;
+        if (pageLoad) {
+            userUI = getUserDateToLocalStorage(type);
+            console.log('userLocStor 1', userUI);
+        } else {
+            saveUserDateToLocalStorage(userUI, type);
+        }
         h.innerText = "Save Changes";
-        pU.innerText = "";
+        pU.innerText = `Change user date to
+            Name: ${userUI.name},
+            Surname: ${userUI.surname},
+            Email: ${userUI.email},
+            Date of birth: ${userUI.dateOfBirth},
+            Gender: ${userUI.gender}
+        `;
         p.innerText = 'Confirm changes?';
         b.innerHTML = `
-            <a class="btn btn-modal blue" onclick="saveData(${id})" >Confirm</a>
+            <a class="btn btn-modal blue" onclick="saveData(${id}, ${pageLoad})" >Confirm</a>
             <a class="btn btn-modal blue" onclick="closeModal()">Cencel</a>
         `
     } else if (type === "POST") {
         var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?method=POST&id=0`;
+        if (pageLoad) {
+            userUI = getUserDateToLocalStorage(type)
+            console.log('userLocStor 2', userUI);
+        } else {
+            userUI = getNewUserData();
+            saveUserDateToLocalStorage(userUI, type);
+        }
         h.innerText = "Create New";
-        pU.innerText = "";
+        pU.innerText = `Create new user
+        Name: ${userUI.name},
+        Surname: ${userUI.surname},
+        Email: ${userUI.email},
+        Date of birth: ${userUI.dateOfBirth},
+        Gender: ${userUI.gender}
+    `;;
         p.innerText = 'Confirm creating new row?';
         b.innerHTML = `
-            <a class="btn btn-modal blue" onclick="createAndsaveData()">Confirm</a>
+            <a class="btn btn-modal blue" onclick="createAndsaveData(${pageLoad})">Confirm</a>
             <a class="btn btn-modal blue" onclick="closeModal()">Cencel</a>
         `
     } else if (type === "DELETE") {
@@ -73,7 +97,7 @@ function pageReady() {
     const method = getUrlParams('method');
     const id = getUrlParams('id');
     if (method !== null) {
-        openModal(id, method);
+        openModal(id, method, true);
     }
 }
 
