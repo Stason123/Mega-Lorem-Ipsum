@@ -74,6 +74,8 @@ function createAndsaveData(getFromLocStor = fasle) {
     sendRequest('POST', restApiUrl + 'users/PostUser', newUser)
         .then(data => {
             clearUrl();
+            closeModal();
+            location.reload();
             console.log(data)
         })
         .catch(err => console.log(err));
@@ -89,6 +91,8 @@ async function createNewTwoHundry() {
     }
     sendRequest('POST', restApiUrl + 'users/PostUserTwoHundy', usersArr)
         .then(data => {
+            closeModal();
+            location.reload();
             console.log(data)
         })
         .catch(err => console.log(err));
