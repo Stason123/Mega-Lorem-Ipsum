@@ -7,6 +7,7 @@ VanillaJS + .net core + MySql in Docker + Jest Unit test
 3. Backend I using .net core 3.1
 
 4. To run frontend run 'npm install' and run by 'node app.js'
+    - can run localhost:1338 in browser
 
 5. Frontend build on Vanilla Javascript
     - Can create, delete, change users data
