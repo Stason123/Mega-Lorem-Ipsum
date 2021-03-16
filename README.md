@@ -6,8 +6,7 @@ VanillaJS + .net core + MySql in Docker + Jest Unit test
  
 3. Backend I using .net core 3.1
 
-4. Install Live Server to vs code to make possible run project
-    - Now you can run frontend project by click mosue right button on index.html and click "Open with Live Server"
+4. To run frontend run 'npm install' and run by 'node app.js'
 
 5. Frontend build on Vanilla Javascript
     - Can create, delete, change users data
