@@ -91,6 +91,8 @@ async function createNewTwoHundry() {
     }
     sendRequest('POST', restApiUrl + 'users/PostUserTwoHundy', usersArr)
         .then(data => {
+            closeModal();
+            location.reload();
             console.log(data)
             closeModal();
             location.reload();
